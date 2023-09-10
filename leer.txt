@@ -1,1 +1,3 @@
 Los Proyectos estan realizados mediante Quartus.
+Recomiendo leer las descripciones de cada uno y simularlos con ModelSims en Quartus
+(VERSION DE QUARTUZ USADA 19.1)
