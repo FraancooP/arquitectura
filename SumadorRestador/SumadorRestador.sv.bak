@@ -1,0 +1,17 @@
+module SumadorRestador #(parameter width = 8)(
+input logic [width-1:0] a,
+input logic [width-1:0] b,
+input logic subtract,
+output logic [width-1:0] y,
+output logic cout);
+logic [width:0] temp_result;
+always_comb begin
+if(subtract)
+temp_result = a-b;
+else
+temp_result = a+b;
+end
+
+assing y = temp_result[width-1:0];
+assing cout = temp_result[width-1:0];
+endmodule
