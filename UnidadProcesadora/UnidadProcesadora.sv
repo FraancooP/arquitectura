@@ -4,31 +4,26 @@ module UnidadProcesadora #(parameter N = 4)
                  input logic [N-1:0] DATA_in,
                  output logic [3:0] stateBits,
                  output logic [N-1:0] DATA_out);
-					  
-	Alu #(N) alu_instancia(
-		.a(busA),
-		.b(busB),
-		.ALUControl(ctrl_word[6:3]),
-		.Result(ALU_out),
-		.ALUFlags(flags)
-	);
-	
-	Shifter #(N) shifter_instancia(
-		.F(busA),
-		.H(ctrl_word[2:0]),
-		.S(DATA_out)
-	);
-	
-	RamPort #(N, 4) ram_instancia(
-		.clk(clk),
-		.we3(ctrl_word[7]),
-		.a1(ctrl_word[15:12]),
-		.a2(ctrl_word[11:8]),
-		.a3(ctrl_word[6:3]),
-		.d1(busA),
-		.d2(busB),
-		.d3(DATA_out),
-	);
+
+	logic [N-1:0] busA, busB, RegA, RegB, ALU_out;
+   logic [2:0] A, B, D; 
+   logic [3:0] flags;
+
+   assign A = ctrl_word [15:13];
+   assign B = ctrl_word [12:10];
+   assign D = ctrl_word [9:7];
+  
+   assign busA = ((A!=0) ? RegA : DATA_in );
+   assign busB = ((B!=0) ? RegB : DATA_in );
+
+   //ram3port #(3,4) REG_file (clk, (D != 0), A, B, D, RegA, RegB, DATA_out);  
+   RamPort REG_file (clk, (D != 0), A, B, D, RegA, RegB, DATA_out);
+   Shifter SHIFTER_unit (ALU_out, ctrl_word [2:0], DATA_out); 
+	Alu ALU_unit (busA, busB, ctrl_word [6:3], ALU_out, flags);
+
+   always_ff @(posedge clk)
+     stateBits <= flags;                    
+   
 endmodule
 //Ram3port--------------------------------------------------------------------------------
 module RamPort #(parameter N = 2, M = 4)
@@ -107,15 +102,3 @@ module Alu #(parameter N = 4)
   assign ALUFlags = {overflow, neg, zero, acarreo };
 endmodule
 //-----------------------------------------------------------------------------------------
-
-
-
-
-
-
-
-
-
-
-
-

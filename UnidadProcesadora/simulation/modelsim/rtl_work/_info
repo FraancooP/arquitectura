@@ -10,23 +10,23 @@ cModel Technology
 Z0 dC:/Users/franc/OneDrive/Escritorio/Arquitectura/UnidadProcesadora/simulation/modelsim
 vAlu
 Z1 DXx6 sv_std 3 std 0 22 AD7iAPLo6nTIKk<N0eo=D3
-Z2 !s110 1695339363
+Z2 !s110 1695343076
 !i10b 1
-!s100 gdRjbEdV]BAJnU>@HRaZL0
-IgL@LF7>V?>JPb9X6JK[CR0
+!s100 FKcP0=n02bHfVOimikTeM3
+I`A30_=BQT`Zj17o8l<m0N2
 Z3 VDg1SIo80bB@j0V0VzS_@n1
 Z4 !s105 UnidadProcesadora_sv_unit
 S1
 R0
-Z5 w1695338945
+Z5 w1695342979
 Z6 8C:/Users/franc/OneDrive/Escritorio/Arquitectura/UnidadProcesadora/UnidadProcesadora.sv
 Z7 FC:/Users/franc/OneDrive/Escritorio/Arquitectura/UnidadProcesadora/UnidadProcesadora.sv
-L0 68
+L0 63
 Z8 OV;L;10.5b;63
 r1
 !s85 0
 31
-Z9 !s108 1695339363.000000
+Z9 !s108 1695343076.000000
 Z10 !s107 C:/Users/franc/OneDrive/Escritorio/Arquitectura/UnidadProcesadora/UnidadProcesadora.sv|
 Z11 !s90 -reportprogress|300|-sv|-work|work|+incdir+C:/Users/franc/OneDrive/Escritorio/Arquitectura/UnidadProcesadora|C:/Users/franc/OneDrive/Escritorio/Arquitectura/UnidadProcesadora/UnidadProcesadora.sv|
 !i113 1
@@ -38,8 +38,8 @@ vRamPort
 R1
 R2
 !i10b 1
-!s100 IfGKJTLlCY83Oh@A5mk4V3
-ITAPMdgBW`B[DkYR7z2V3:2
+!s100 BAkH?zOVLEEeRCkTB4SOe3
+I9:z=dXf5hL86b;SV>F>Wb1
 R3
 R4
 S1
@@ -47,7 +47,7 @@ R0
 R5
 R6
 R7
-L0 34
+L0 29
 R8
 r1
 !s85 0
@@ -64,8 +64,8 @@ vShifter
 R1
 R2
 !i10b 1
-!s100 c5M1S9VfWKUa>nSoo<]9g0
-IM9]kJ0mJ1keLRQQ`HKdK01
+!s100 b?1fCP0fbHeFl673DR_C]0
+IFjc<]1hgZZfELWQU2Za[92
 R3
 R4
 S1
@@ -73,7 +73,7 @@ R0
 R5
 R6
 R7
-L0 50
+L0 45
 R8
 r1
 !s85 0
@@ -86,3 +86,29 @@ R12
 R13
 R14
 n@shifter
+vUnidadProcesadora
+R1
+R2
+!i10b 1
+!s100 1BZVY_z?VF<OPa6Bl65]P3
+IXXFk4:ARgahKHE54Lff?<0
+R3
+R4
+S1
+R0
+R5
+R6
+R7
+L0 1
+R8
+r1
+!s85 0
+31
+R9
+R10
+R11
+!i113 1
+R12
+R13
+R14
+n@unidad@procesadora

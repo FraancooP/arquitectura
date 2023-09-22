@@ -1,12 +1,12 @@
-Analysis & Synthesis Status : Successful - Thu Sep 21 20:31:35 2023
+Analysis & Synthesis Status : Successful - Thu Sep 21 21:36:44 2023
 Quartus Prime Version : 19.1.0 Build 670 09/22/2019 SJ Lite Edition
 Revision Name : UnidadProcesadora
 Top-level Entity Name : UnidadProcesadora
 Family : Cyclone IV E
-Total logic elements : 46
-    Total combinational functions : 46
-    Dedicated logic registers : 16
-Total registers : 16
+Total logic elements : 74
+    Total combinational functions : 62
+    Dedicated logic registers : 19
+Total registers : 19
 Total pins : 29
 Total virtual pins : 0
 Total memory bits : 0

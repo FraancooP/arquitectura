@@ -12,17 +12,76 @@
 # 
 # vlog -sv -work work +incdir+C:/Users/franc/OneDrive/Escritorio/Arquitectura/UnidadProcesadora {C:/Users/franc/OneDrive/Escritorio/Arquitectura/UnidadProcesadora/UnidadProcesadora.sv}
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 20:36:03 on Sep 21,2023
+# Start time: 21:37:56 on Sep 21,2023
 # vlog -reportprogress 300 -sv -work work "+incdir+C:/Users/franc/OneDrive/Escritorio/Arquitectura/UnidadProcesadora" C:/Users/franc/OneDrive/Escritorio/Arquitectura/UnidadProcesadora/UnidadProcesadora.sv 
 # -- Compiling module UnidadProcesadora
-# ** Error: (vlog-13069) C:/Users/franc/OneDrive/Escritorio/Arquitectura/UnidadProcesadora/UnidadProcesadora.sv(31): near ")": syntax error, unexpected ')', expecting .* or '.'.
 # -- Compiling module RamPort
 # -- Compiling module Shifter
 # -- Compiling module Alu
-# End time: 20:36:03 on Sep 21,2023, Elapsed time: 0:00:00
-# Errors: 1, Warnings: 0
-# ** Error: D:/Quartuz/Quartuz19.1/modelsim_ase/win32aloem/vlog failed.
-# Error in macro ./UnidadProcesadora_run_msim_rtl_verilog.do line 8
-# D:/Quartuz/Quartuz19.1/modelsim_ase/win32aloem/vlog failed.
-#     while executing
-# "vlog -sv -work work +incdir+C:/Users/franc/OneDrive/Escritorio/Arquitectura/UnidadProcesadora {C:/Users/franc/OneDrive/Escritorio/Arquitectura/UnidadP..."
+# 
+# Top level modules:
+# 	UnidadProcesadora
+# End time: 21:37:56 on Sep 21,2023, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# 
+vsim rtl_work.UnidadProcesadora
+# vsim rtl_work.UnidadProcesadora 
+# Start time: 21:38:29 on Sep 21,2023
+# Loading sv_std.std
+# Loading rtl_work.UnidadProcesadora
+# Loading rtl_work.RamPort
+# Loading rtl_work.Shifter
+# Loading rtl_work.Alu
+# ** Warning: (vsim-3015) C:/Users/franc/OneDrive/Escritorio/Arquitectura/UnidadProcesadora/UnidadProcesadora.sv(20): [PCDPC] - Port size (2) does not match connection size (3) for port 'a1'. The port definition is at: C:/Users/franc/OneDrive/Escritorio/Arquitectura/UnidadProcesadora/UnidadProcesadora.sv(33).
+#    Time: 0 ps  Iteration: 0  Instance: /UnidadProcesadora/REG_file File: C:/Users/franc/OneDrive/Escritorio/Arquitectura/UnidadProcesadora/UnidadProcesadora.sv
+# ** Warning: (vsim-3015) C:/Users/franc/OneDrive/Escritorio/Arquitectura/UnidadProcesadora/UnidadProcesadora.sv(20): [PCDPC] - Port size (2) does not match connection size (3) for port 'a2'. The port definition is at: C:/Users/franc/OneDrive/Escritorio/Arquitectura/UnidadProcesadora/UnidadProcesadora.sv(33).
+#    Time: 0 ps  Iteration: 0  Instance: /UnidadProcesadora/REG_file File: C:/Users/franc/OneDrive/Escritorio/Arquitectura/UnidadProcesadora/UnidadProcesadora.sv
+# ** Warning: (vsim-3015) C:/Users/franc/OneDrive/Escritorio/Arquitectura/UnidadProcesadora/UnidadProcesadora.sv(20): [PCDPC] - Port size (2) does not match connection size (3) for port 'a3'. The port definition is at: C:/Users/franc/OneDrive/Escritorio/Arquitectura/UnidadProcesadora/UnidadProcesadora.sv(33).
+#    Time: 0 ps  Iteration: 0  Instance: /UnidadProcesadora/REG_file File: C:/Users/franc/OneDrive/Escritorio/Arquitectura/UnidadProcesadora/UnidadProcesadora.sv
+add wave -position end  sim:/UnidadProcesadora/N
+add wave -position end  sim:/UnidadProcesadora/clk
+add wave -position end  sim:/UnidadProcesadora/ctrl_word
+add wave -position end  sim:/UnidadProcesadora/DATA_in
+add wave -position end  sim:/UnidadProcesadora/stateBits
+add wave -position end  sim:/UnidadProcesadora/DATA_out
+add wave -position end  sim:/UnidadProcesadora/busA
+add wave -position end  sim:/UnidadProcesadora/busB
+add wave -position end  sim:/UnidadProcesadora/RegA
+add wave -position end  sim:/UnidadProcesadora/RegB
+add wave -position end  sim:/UnidadProcesadora/ALU_out
+add wave -position end  sim:/UnidadProcesadora/A
+add wave -position end  sim:/UnidadProcesadora/B
+add wave -position end  sim:/UnidadProcesadora/D
+add wave -position end  sim:/UnidadProcesadora/flags
+force -freeze sim:/UnidadProcesadora/RegA 0001 0
+force -freeze sim:/UnidadProcesadora/RegB 0010 0
+force -freeze sim:/UnidadProcesadora/ctrl_word 0010100110010000 0
+force -freeze sim:/UnidadProcesadora/clk 1 0
+run
+force -freeze sim:/UnidadProcesadora/clk 0 0
+run
+force -freeze sim:/UnidadProcesadora/clk 1 0
+run
+force -freeze sim:/UnidadProcesadora/DATA_in 0010 0
+run
+force -freeze sim:/UnidadProcesadora/clk 0 0
+run
+force -freeze sim:/UnidadProcesadora/clk 1 0
+force -freeze sim:/UnidadProcesadora/clk St1 0
+run
+force -freeze sim:/UnidadProcesadora/busA 0010 0
+force -freeze sim:/UnidadProcesadora/busB 0100 0
+force -freeze sim:/UnidadProcesadora/clk 0 0
+run
+force -freeze sim:/UnidadProcesadora/clk 1 0
+run
+force -freeze sim:/UnidadProcesadora/DATA_in xxxx 0
+run
+force -freeze sim:/UnidadProcesadora/busA xxxx 0
+force -freeze sim:/UnidadProcesadora/busB xxxx 0
+force -freeze sim:/UnidadProcesadora/ctrl_word 0110000110000000 0
+force -freeze sim:/UnidadProcesadora/RegA 0011 0
+force -freeze sim:/UnidadProcesadora/RegB xxxx 0
+run
+# End time: 21:51:36 on Sep 21,2023, Elapsed time: 0:13:07
+# Errors: 0, Warnings: 3
