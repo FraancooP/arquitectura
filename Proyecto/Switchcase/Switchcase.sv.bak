@@ -1,0 +1,17 @@
+module Switchcase;
+	reg[2:0] opcion;//Definimos un registro de 3 bits.
+	always @(*) begin
+		case(opcion)
+			3'b000:
+			$display("Opción 0 seleccionada.");
+			3'b001:
+			$display("Opción 1 seleccionada.");
+			3'b010:
+			$display("Opción 2 seleccionada.");
+			3'b011:
+			$display("Opción 3 seleccionada.");
+			default:
+			$display("No se eligio nada.");
+		endcase
+	end
+endmodule

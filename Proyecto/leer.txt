@@ -1,0 +1,2 @@
+Este proyecto se basa en un sistema que trabaja con secuencias de luces, los proyectos que aparecen aqui fueron 
+realizados para poder lograr el proyecto principal que es el que trabaja con una secuencia de luces.

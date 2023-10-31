@@ -1,0 +1,5 @@
+Info (10281): Verilog HDL Declaration information at top.sv(8): object "INport" differs only in case from object "inport" in the same scope File: C:/Users/franc/OneDrive/Escritorio/Arquitectura/ProyectoTop/top.sv Line: 8
+Info (10281): Verilog HDL Declaration information at top.sv(9): object "OUTport" differs only in case from object "outport" in the same scope File: C:/Users/franc/OneDrive/Escritorio/Arquitectura/ProyectoTop/top.sv Line: 9
+Warning (10273): Verilog HDL warning at top.sv(126): extended using "x" or "z" File: C:/Users/franc/OneDrive/Escritorio/Arquitectura/ProyectoTop/top.sv Line: 126
+Warning (10273): Verilog HDL warning at top.sv(140): extended using "x" or "z" File: C:/Users/franc/OneDrive/Escritorio/Arquitectura/ProyectoTop/top.sv Line: 140
+Warning (10273): Verilog HDL warning at top.sv(282): extended using "x" or "z" File: C:/Users/franc/OneDrive/Escritorio/Arquitectura/ProyectoTop/top.sv Line: 282
