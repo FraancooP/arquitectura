@@ -1,0 +1,416 @@
+------------------------------------------------------------------------------------------------------------------------
+---------------------------------------LECTURA CONTRASEÑA---------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------
+0 Contraseña	SUB R0, R15, R15		Seteo R0, en 0
+1			LDR R9, [R0, #0x0]	Guardamos la contraseña que esta en DMEN
+2			ADD R1, R0, #3		Creo un contador de 3 intentos en el registro 1
+3			ADD R2, R0, #1		Cargo en 1 R2 para duplicar
+4			ADD R3, R0, #0x1		Uso R3, comenzando en el primero led(Intento 1)
+5			STR R3, [R0, #0x800]	Muestro en pantalla LEDS
+6			LDR R4, [R0, #0x800]	Lectura de boton
+7			ANDS R4, R4, #0x80	Comparo si se preciono boton
+8			BNE #24			Vuelve a la lectura del boton(si aprieto, apaga BNE)
+9			LDR R5, [R0, #0xC]	Cargo en R5, DELAY DE BOTON
+10			SUBS R5, R5, #1		Resto delay
+11			BNE #40			Vuelvo al subs para perder tiempo(cuando se termine, apaga BNE)
+12			LDR R6, [R0, 0x800]	LEO LLAVES EN REGISTRO 6
+13			ANDS R6, R6, R9		COMPARO LLAVES CON EL REGISTRO R9
+14			BNE #64			Si no son iguales, salto a aumento de intento
+15			BEQ #84			Si son iguales salto a menu
+16			ADD R2, R2, R2		Duplico R2(comenzo en 1)
+17			ADD R3, R3, R2		Sumo en R3, el duplicado de R2(Muestro los siguientes intentos en los leds)
+18			SUBS R1, R1, #1		Resto 1 intento del contador
+19			BNE #20			Cuando se acaban los intentos apaga este BNE
+20 FinContraseña	B #780			Se acabaron los intentos, se debe apagar el sistema(salto a apagar leds).
+------------------------------------------------------------------------------------------------------------------------
+---------------------------------------MENU-----------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------
+21 Opcion 1		ADD R8, R0, #0xFF		Cargo R8, con FF(TODOS LOS LEDS PRENDIDOS)				
+22			STR R8, [R0,#0x800]	MUESTRO TODOS LOS LEDS PRENDIDOS INDICANDO Q ESTOY EN MENU				
+23			LDR R9, [R0, #0xC]	Cargo Delay de boton				
+24			SUBS R9, R9, #1		Resto delay				
+25			BNE #96			Espero a terminar de restar delay				
+26			LDR R1, [R0, #0xC]	CARGO EN REGISTRO 1, DELAY DE BOTON(TIEMPO DE ESPERA ANTES DE IR A LA SECUENCIA)				
+27			ADD R2, R0, #0x81		Cargo en registro 2, el 81(Significa PRIMER Y ULTIMO LED PRENDIDO)10000001				
+28			STR R2, [R0, #0x800]	Muestro la opcion 1(10000001)				
+29			LDR R3, [R0, #0x800]	Hago lectura de boton				
+30			ANDS R3, R3, #0x80	Comparo si se preciono o no el boton				
+31			BNE #132			Si no se aprieta boton, salto al subs				
+32			BEQ #200			Si aprieto Boton, salto a opcion 2				
+33			SUBS R1, R1, #1		Resto el delay de boton				
+34 Fin Opcion 1	BNE #116			Salto a la lectura del boton de nuevo
+------------------------------------------------------------------------------------------------------------------------
+50 OPCION 2		ADD R8, R0, #0x83		CARGO EN R8, 83(10000011)Es la opcion 2
+51			STR R8, [R0,#0x800]	Muestra los leds
+52			LDR R9, [R0, #0xC]	Cargo en r9, un delay
+53			SUBS R9, R9, #1		Decremento delay en 1
+54			BNE #212			Espero a terminar de restar delay
+55			LDR R1, [R0, #0xC]	Cargro en R1, el delay de espera del boton
+56			ADD R2, R0, #0x83		Cargo en R2, 83(opcion 2)
+57			STR R2, [R0, #0x800]	Muestro opcion 2
+58			LDR R3, [R0, #0x800]	Lectura de boton
+59			ANDS R3, R3, #0x80	Comparo si aprete boton o no
+60			BNE #248			Si NO apriete boton salto al subs
+61			BEQ #404			Si aprete boton, salto a opcion 3
+62			SUBS R1, R1, #1		Decremento delay de espera de boton
+63 FIN OP 2		BNE #232			Salta a lectura de boton	
+------------------------------------------------------------------------------------------------------------------------
+101 OPCION 3	ADD R8, R0, #0x87		Cargo OPCION 3 (10000111)
+102			STR R8, [R0,#0x800]	Muestro opcion 3
+103			LDR R9, [R0, #0xC]	Lectura de delay
+104			SUBS R9, R9, #1		Resto delay
+105			BNE #416			Espero a terminar de restar delay
+106			LDR R1, [R0, #0xC]	Carga delay de espera de boton
+107			ADD R2, R0, #0x87		Muestra de nuevo la opcion 3
+108			STR R2, [R0, #0x800]	Muestra leds
+109			LDR R3, [R0, #0x800]	Lectura de boton
+110			ANDS R3, R3, #0x80	Comparo si aprete o no boton
+111			BNE #452			Si NO aprete Salto al subs
+112			BEQ #520			Si aprete salto a la opcion 4
+113			SUBS R1, R1, #1		Resta en 1 el delay de espera del boton
+114 FIN OPCION 3	BNE #436			Salta a lectura de boton	
+------------------------------------------------------------------------------------------------------------------------
+130 OPCION 4	ADD R8, R0, #0x8F		cargo OPCION 4 (10001111)
+131			STR R8, [R0,#0x800]	Muestro opcion 4
+132			LDR R9, [R0, #0xC]	Lectura de delay
+133			SUBS R9, R9, #1		Resto delay
+134			BNE #532			Espero a terminar de restar delay
+135			LDR R1, [R0, #0xC]	Carga delay de espera de boton
+136			ADD R2, R0, #0x8F		Muestra de nuevo la opcion 4
+137			STR R2, [R0, #0x800]	Muestra leds
+138			LDR R3, [R0, #0x800]	Lectura de boton
+139			ANDS R3, R3, #0x80	Comparo si aprete o no boton
+140			BNE #568			Si NO aprete Salto al subs
+141			BEQ #84			Si aprete salto a la opcion 1
+142			SUBS R1, R1, #1		Resta en 1 el delay de espera del boton
+143 FIN OPCION 4	BNE #552			Salta a lectura de boton		
+------------------------------------------------------------------------------------------------------------------------
+---------------------------------------SECUENCIA CARRERITA POR TABLA----------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------
+35 CARRERITA	ADD R7, R0, #0		Empieza secuencia de lectura por tabla
+36			ADD R2, R0, #16		Cargo R2, con la cantidad de lineas que tiene la tabla
+37			LDR R4, [R7, #0x10]	Leo la primera posicion donde comienza la lectura de la tabla de la carrerita(donde arranca la tabla)
+38			STR R4, [R0, #0x800]	Muestro lo que cargo R4(prende los leds)
+39			LDR R3, [R0,#0x4]		Cargo en R3, delay utilizado para le secuencia(esta cargado en la 0x4)
+40			SUBS R3, R3, #1		Decremento delay
+41			BNE #160			Espero a terminar de restar delay
+42			ADD R7, R7, #4		Aumento en 4 el registro R7 para leer la siguiente linea
+43			LDR R5, [R0, #0x800]	Lectura de boton
+44			ANDS R5, R5, #0x80	Compara si aprete boton o no
+45			BNE #188			Si no aprieto salto al subs
+46			BEQ #84			Si aprieto salto AL MENU
+47			SUBS R2, R2, #1		Resta R2, en 1, R2, es la cantida de lineas que tiene mi tabla
+48			BNE #148			SALTA AL LDR R4,[R7, 0x10], para leer la primera posicion mas R7
+49 FIN CARRERITA	B #140			Reinicio hasta la carrerita(ADD R7, R0, #0)
+------------------------------------------------------------------------------------------------------------------------
+---------------------------------------SECUENCIA AUTO FANTASTICO POR ALGORITMO------------------------------------------
+------------------------------------------------------------------------------------------------------------------------
+64 AUTO		ADD R9, R0, #0		CARGO EN R9, UN 0(LO USAMOS PARA DELAY)
+65			ADD R1, R0, #0		Cargo en R1, un 0(Contador de divisiones)
+66			ADD R5, R0, #7		Cargo en R5, un 7(Cantida de veces que voy a dividir)
+67			ADD R2, R0, #0x80		Cargo en R2, el 0x80(Comienzo por el ultimo led)
+68			STR R2,[R0, #0x800]	Muestro el ultimo led(0x800+0x80)
+69			ADD R3, R0, #6		Cargo en el registro R3, un 6(Cantidad de veces que duplico un registro)
+70			ADD R4, R0, #1		CARGO EN EL REGISTRO R4, UN 1 (REGISTRO QUE VOY A DUPLICAR)
+71			SUBS R3, R3, R1		RESTO R3, CON R1 
+72			BEQ #304			SI LO DE ARRIBA ES 0 SE ACTIBA EL SALTO, de lo contrario no
+73			SUBS R3, R3, #1		DECREMENTA EN 1, R3(VALE 6)
+74			ADD R4, R4, R4		DUPLICA R4, 6 VECES
+75			BNE #292			SALTAMOS AL SUBS R3, R3, #1
+76			ADD R1, R1, #1		SUMO EN 1 EL CONTADOR DE DIVISION
+77			SUB R2, R2, R4		RESTO LO QUE ESTA EN R2(0x80)con lo q esta en R4(0x40)seria la division
+78			LDR R9, [R0, #0x4]	Lectura de delay de secuencia
+79			SUBS R9, R9, #1		resto delay en 1
+80			BNE #316			Espero a terminar de restar delay
+81			LDR R8, [R0, #0x800]	HAGO LECTURA DE BOTON
+82			ANDS R8, R8, #0x80	COMPARO SI APRETE BOTON O NO
+83			BNE #340			SI NO APRIETO NADA, SIGO AL SUBS
+84			BEQ #84			SI APRIETO BOTON VUELVO AL MENU 1
+85			SUBS R5, R5, #1		ESTE SUBS SE ACTIVA 7 VECES(CANTIDAD DE VECES QUE DECIDIMOS DIVIDIR)
+86			BNE #272			SALTA A MOSTRAR LOS LEDS
+87			STR R2, [R0, #0x800]	MUESTRO LA PRIMERA LUZ
+88			ADD R5, R0, #7		CARGO EN R5, UN 7(Cantida de veces que voy a MULTIPLICAR)
+89			ADD R2, R2, R2		DUPLICO R2(COMENZANDO EN 1)
+90			LDR R9, [R0, #0x4]	Lectura de delay de secuencia
+91			SUBS R9, R9, #1		Decremento delay en 1
+92			BNE #364			Salto al subs del delay
+93			STR R2, [R0,#0x800]	Muestro R2
+94			LDR R8, [R0, #0x800]	Hago leCTURA DE BOTON
+95			ANDS R8, R8, #0x80	Comparo si aprete o no el boton
+96			BNE #392			Si NO aprieto Boton salto al subs
+97			BEQ #84			Si aprieto BOTON vuelvo al menu 1
+98			SUBS R5, R5, #1		Decremento cantidad de veces que quiero multiplicar en 1
+99			BNE #356			Salto a duplicar R2
+100 FIN AUTO	B #256			Reinicia toda la secuencia de nuevo
+------------------------------------------------------------------------------------------------------------------------
+---------------------------------------SECUENCIA DE LA SNAKE POR TABLA--------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------
+115 VIBORITA	ADD R7, R0, #0		CARGO EN R7 UN 0
+116			ADD R2, R0, #32		Cargo en R2, un 32, Cantidad de lineas que tiene la tabla
+117			LDR R4, [R7, #0x50]	Comienzo leyendo desde la linea 0x50
+118			STR R4, [R0, #0x800]	Muestro esa linea
+119			LDR R3, [R0,#0x8]		Cargo delay de secuencia
+120			SUBS R3, R3, #1		Decremento delay en 1
+121			BNE #480			Salto al decremento
+122			ADD R7, R7, #4		Aumento en 4 R7
+123			LDR R5, [R0, #0x800]	Lectura de boton
+124			ANDS R5, R5, #0x80	Comparo si aprete o no boton
+125			BNE#508			Si No aprete salto al subs
+126			BEQ #84			Si aprete vuelvo a Menu
+127			SUBS R2, R2, #1		Decremento R2(Cantidad de lineas a leer)
+128			BNE #468			Salto a STR(Muestro Linea inicial + R7)
+129 FIN VIBORA	B #460			Reinicio Secuencia
+------------------------------------------------------------------------------------------------------------------------
+---------------------------------------SECUENCIA DE CARGA Y DESCARGA POR ALGORITMO--------------------------------------
+------------------------------------------------------------------------------------------------------------------------
+144 CARGA		ADD R1, R0, #0		Cargo en R1, un 0(Contador de divisiones)
+145			ADD R2, R0, #0x1		Cargo en R2, un 0x1(Comienzo en led 1)
+146			ADD R3, R0, #0x80		Cargo en R3, 0x80(ULTIMO LED)
+147			ADD R4, R0, #0		CARGO EN R4 UN 0
+148			ADD R5, R0, #0		CARGO EN R5 UN 0
+149			ADD R6, R0, #7		Cargo en R6 un 7, Cantidad de veces que voy mostrar leds
+150			ADD R8, R0, #8		Cargo en R8, un 8(Veces que voy a duplicar un registro)
+151			SUB R8, R8, R5		Decremento R8 en R5
+152			ADD R4, R4, R2		Le sumo a R4 lo que esta en R2
+153			STR R4, [R0, #0x800]	Muestro R4
+154			ADD R4, R4, R2		Le sumo a R4 lo que esta en R2
+155			ADD R2, R2, R2		Duplico R2
+156			LDR R9, [R0, #0x8]	Cargo delay de secuencia
+157			SUBS R9, R9, #1		Decremento delay en 1
+158			BNE #628			Salto al decremento
+159			SUBS R8, R8, #1		Decremento R8, en 1
+160			BNE #612			Salto a Mostrar 
+161			ADD R5, R5, #1		Aumento R5 en 1
+162			ADD R2, R0, #0x1		Recargo R2 con 0x1
+163			ADD R4, R0, R3		Recargo R4, con lo que quedo en R3(0x80)
+164			ADD R10, R0, #6		Cargo R10 un 6(Veces q duplico un registro)
+165			ADD R11, R0, #1		Cargo 1 en R11, EL QUE VAMOS A DUPLICAR
+166			SUBS R10, R10, R1		RESTO R10 CON R1
+167			BEQ #684			Salto a Aumentar contador de divisiones
+168			SUBS R10, R10, #1		Veces que duplico R11
+169			ADD R11, R11, R11		Duplico R11
+170			BNE #672			Salto A Subs r10
+171			ADD R1, R1, #1		Aumento r1 en 1
+172			ADD R3, R3, R11		Cargo en r3, lo que esta en r3 mas r11
+173			LDR R8, [R0, #0x800]	Lectura de boton
+174			ANDS R8, R8, #0x80	Comparo si apreto o no
+175			BNE #708			Si No Aprieto salto al subs
+176			BEQ #84			Si aprieto vuelvo a menu 1
+177			SUBS R6, R6, #1		Decremento Cantidad de veces q muestro leds
+178			BNE #600			Salto a mostrar recargar r8
+179			ADD R1, R0, #8		Cargo en r1 un 8(cantidad de veces q vamos a descargar)
+180			ADD R2, R0, #0x1		Cargo un 0x1 en r2
+181			ADD R3, R0, #0xFF		Cargo en R3, un 0xFF(todos los leds prendidos)
+182			STR R3, [R0, #0x800]	Muestro en pantalla todos los leds prendidos
+183			SUB R3, R3, R2		Decremento R3 en R2
+184			ADD R2, R2, R2		Duplico R2
+185			LDR R9,[R0,#0x8]		Lectura de delay de secuencia
+186			SUBS R9, R9, #1		Decremento delay en 1
+187			BNE #744			Espero a terminar de restar delay
+188			LDR R8, [R0, #0x800]	Lectura de boton
+189			ANDS R8, R8, #0x80	Comparo si aprete o no el boton
+190			BNE #768			Si No aprete boton salto al subs
+191			BEQ #84			Si Aprieto Boton salto al menu 1
+192			SUBS R1, R1, #1		Decremento r1 en 1
+193			BNE #728			Salto A Mostrar STR
+194 FIN CARGA	B #576			Reinicia toda la secuencia de nuevo
+------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------
+---------------------------------------INSTRUCCIONES EN NEMOTECNICOS----------------------------------------------------
+SUB R0, R15, R15
+LDR R9, [R0, #0x0]
+ADD R1, R0, #3
+ADD R2, R0, #1
+ADD R3, R0, #0x1
+STR R3, [R0, #0x800]
+LDR R4, [R0, #0x800]
+ANDS R4, R4, #0x80
+BNE #24
+LDR R5, [R0, #0xC]
+SUBS R5, R5, #1
+BNE #40
+LDR R6, [R0, 0x800]
+ANDS R6, R6, R9
+BNE #64
+BEQ #84
+ADD R2, R2, R2
+ADD R3, R3, R2
+SUBS R1, R1, #1
+BNE #20
+B #780
+ADD R8, R0, #0xFF
+STR R8, [R0,#0x800]
+LDR R9, [R0, #0xC]
+SUBS R9, R9, #1
+BNE #96
+LDR R1, [R0, #0xC]
+ADD R2, R0, #0x81
+STR R2, [R0, #0x800]
+LDR R3, [R0, #0x800]
+ANDS R3, R3, #0x80
+BNE #132
+BEQ #200
+SUBS R1, R1, #1
+BNE #116
+ADD R7, R0, #0
+ADD R2, R0, #16
+LDR R4, [R7, #0x10]
+STR R4, [R0, #0x800]
+LDR R3, [R0,#0x4]
+SUBS R3, R3, #1
+BNE #160
+ADD R7, R7, #4
+LDR R5, [R0, #0x800]
+ANDS R5, R5, #0x80
+BNE #188
+BEQ #84
+SUBS R2, R2, #1
+BNE #148
+B #140
+ADD R8, R0, #0x83
+STR R8, [R0,#0x800]
+LDR R9, [R0, #0xC]
+SUBS R9, R9, #1
+BNE #212
+LDR R1, [R0, #0xC]
+ADD R2, R0, #0x83
+STR R2, [R0, #0x800]
+LDR R3, [R0, #0x800]
+ANDS R3, R3, #0x80
+BNE #248
+BEQ #404
+SUBS R1, R1, #1
+BNE #232
+ADD R9, R0, #0
+ADD R1, R0, #0
+ADD R5, R0, #7
+ADD R2, R0, #0x80
+STR R2,[R0, #0x800]
+ADD R3, R0, #6
+ADD R4, R0, #1
+SUBS R3, R3, R1
+BEQ #304
+SUBS R3, R3, #1
+ADD R4, R4, R4
+BNE #292
+ADD R1, R1, #1
+SUB R2, R2, R4
+LDR R9, [R0, #0x4]
+SUBS R9, R9, #1
+BNE #316
+LDR R8, [R0, #0x800]
+ANDS R8, R8, #0x80
+BNE #340
+BEQ #84
+SUBS R5, R5, #1
+BNE #272
+STR R2, [R0, #0x800]
+ADD R5, R0, #7
+ADD R2, R2, R2
+LDR R9, [R0, #0x4]
+SUBS R9, R9, #1
+BNE #364
+STR R2, [R0,#0x800]
+LDR R8, [R0, #0x800]
+ANDS R8, R8, #0x80
+BNE #392
+BEQ #84
+SUBS R5, R5, #1
+BNE #356
+B #256
+ADD R8, R0, #0x87
+STR R8, [R0,#0x800]
+LDR R9, [R0, #0xC]
+SUBS R9, R9, #1
+BNE #416
+LDR R1, [R0, #0xC]
+ADD R2, R0, #0x87
+STR R2, [R0, #0x800]
+LDR R3, [R0, #0x800]
+ANDS R3, R3, #0x80
+BNE #452
+BEQ #520
+SUBS R1, R1, #1
+BNE #436
+ADD R7, R0, #0
+ADD R2, R0, #32
+LDR R4, [R7, #0x50]
+STR R4, [R0, #0x800]
+LDR R3, [R0,#0x8]
+SUBS R3, R3, #1
+BNE #480
+ADD R7, R7, #4
+LDR R5, [R0, #0x800]
+ANDS R5, R5, #0x80
+BNE#508
+BEQ #84
+SUBS R2, R2, #1
+BNE #468
+B #460
+ADD R8, R0, #0x8F
+STR R8, [R0,#0x800]
+LDR R9, [R0, #0xC]
+SUBS R9, R9, #1
+BNE #532
+LDR R1, [R0, #0xC]
+ADD R2, R0, #0x8F
+STR R2, [R0, #0x800]
+LDR R3, [R0, #0x800]
+ANDS R3, R3, #0x80
+BNE #568
+BEQ #84
+SUBS R1, R1, #1
+BNE #552
+ADD R1, R0, #0
+ADD R2, R0, #0x1
+ADD R3, R0, #0x80
+ADD R4, R0, #0
+ADD R5, R0, #0
+ADD R6, R0, #7
+ADD R8, R0, #8
+SUB R8, R8, R5
+ADD R4, R4, R2
+STR R4, [R0, #0x800]
+ADD R4, R4, R2
+ADD R2, R2, R2
+LDR R9, [R0, #0x8]
+SUBS R9, R9, #1
+BNE #628
+SUBS R8, R8, #1
+BNE #612
+ADD R5, R5, #1
+ADD R2, R0, #0x1
+ADD R4, R0, R3
+ADD R10, R0, #6
+ADD R11, R0, #1
+SUBS R10, R10, R1
+BEQ #684
+SUBS R10, R10, #1
+ADD R11, R11, R11
+BNE #672
+ADD R1, R1, #1
+ADD R3, R3, R11
+LDR R8, [R0, #0x800]
+ANDS R8, R8, #0x80
+BNE #708
+BEQ #84
+SUBS R6, R6, #1
+BNE #600
+ADD R1, R0, #8
+ADD R2, R0, #0x1
+ADD R3, R0, #0xFF
+STR R3, [R0, #0x800]
+SUB R3, R3, R2
+ADD R2, R2, R2
+LDR R9,[R0,#0x8]
+SUBS R9, R9, #1
+BNE #744
+LDR R8, [R0, #0x800]
+ANDS R8, R8, #0x80
+BNE #768
+BEQ #84
+SUBS R1, R1, #1
+BNE #728
+B #576
+ADD R1, R0, #0x0
+STR R1, [R0,#0x800]

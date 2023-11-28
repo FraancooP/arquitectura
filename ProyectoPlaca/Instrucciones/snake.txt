@@ -1,0 +1,36 @@
+------------------------------------------------------------------------------------------------------------------------
+---------------------------------------SECUENCIA DE LA SNAKE POR TABLA--------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------
+115 VIBORITA	ADD R7, R0, #0		CARGO EN R7 UN 0
+116			ADD R2, R0, #32		Cargo en R2, un 32, Cantidad de lineas que tiene la tabla
+117			LDR R4, [R7, #0x50]	Comienzo leyendo desde la linea 0x50
+118			STR R4, [R0, #0x800]	Muestro esa linea
+119			LDR R3, [R0,#0x8]		Cargo delay de secuencia
+120			SUBS R3, R3, #1		Decremento delay en 1
+121			BNE #480			Salto al decremento
+122			ADD R7, R7, #4		Aumento en 4 R7
+123			LDR R5, [R0, #0x800]	Lectura de boton
+124			ANDS R5, R5, #0x80	Comparo si aprete o no boton
+125			BNE#508			Si No aprete salto al subs
+126			BEQ #84			Si aprete vuelvo a Menu
+127			SUBS R2, R2, #1		Decremento R2(Cantidad de lineas a leer)
+128			BNE #468			Salto a STR(Muestro Linea inicial + R7)
+129 FIN VIBORA	B #460			Reinicio Secuencia
+------------------------------------------------------------------------------------------------------------------------
+---------------------------------------INSTRUCCIONES EN NEMOTECNICOS----------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------
+ADD R7, R0, #0
+ADD R2, R0, #32
+LDR R4, [R7, #0x50]
+STR R4, [R0, #0x800]
+LDR R3, [R0,#0x8]
+SUBS R3, R3, #1
+BNE #480
+ADD R7, R7, #4
+LDR R5, [R0, #0x800]
+ANDS R5, R5, #0x80
+BNE#508
+BEQ #84
+SUBS R2, R2, #1
+BNE #468
+B #460

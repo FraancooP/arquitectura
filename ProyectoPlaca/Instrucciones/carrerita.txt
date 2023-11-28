@@ -1,0 +1,36 @@
+------------------------------------------------------------------------------------------------------------------------
+---------------------------------------SECUENCIA CARRERITA POR TABLA----------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------
+35 CARRERITA	ADD R7, R0, #0		Empieza secuencia de lectura por tabla
+36			ADD R2, R0, #16		Cargo R2, con la cantidad de lineas que tiene la tabla
+37			LDR R4, [R7, #0x10]	Leo la primera posicion donde comienza la lectura de la tabla de la carrerita(donde arranca la tabla)
+38			STR R4, [R0, #0x800]	Muestro lo que cargo R4(prende los leds)
+39			LDR R3, [R0,#0x4]		Cargo en R3, delay utilizado para le secuencia(esta cargado en la 0x4)
+40			SUBS R3, R3, #1		Decremento delay
+41			BNE #160			Espero a terminar de restar delay
+42			ADD R7, R7, #4		Aumento en 4 el registro R7 para leer la siguiente linea
+43			LDR R5, [R0, #0x800]	Lectura de boton
+44			ANDS R5, R5, #0x80	Compara si aprete boton o no
+45			BNE #188			Si no aprieto salto al subs
+46			BEQ #84			Si aprieto salto AL MENU
+47			SUBS R2, R2, #1		Resta R2, en 1, R2, es la cantida de lineas que tiene mi tabla
+48			BNE #148			SALTA AL LDR R4,[R7, 0X800], para leer la primera posicion mas R7
+49 FIN CARRERITA	B #140			Reinicio hasta la carrerita(ADD R7, R0, #0)
+------------------------------------------------------------------------------------------------------------------------
+---------------------------------------INSTRUCCIONES EN NEMOTECNICOS----------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------
+ADD R7, R0, #0
+ADD R2, R0, #16
+LDR R4, [R7, #0x10]
+STR R4, [R0, #0x800]
+LDR R3, [R0,#0x4]
+SUBS R3, R3, #1
+BNE #160
+ADD R7, R7, #4
+LDR R5, [R0, #0x800]
+ANDS R5, R5, #0x80
+BNE #188
+BEQ #84
+SUBS R2, R2, #1
+BNE #148
+B #140

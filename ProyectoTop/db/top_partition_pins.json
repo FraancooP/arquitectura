@@ -56,7 +56,7 @@
 					"strict" : false
 				},
 				{
-					"name" : "INport[7]",
+					"name" : "INport[4]",
 					"strict" : false
 				},
 				{
@@ -64,11 +64,11 @@
 					"strict" : false
 				},
 				{
-					"name" : "INport[4]",
+					"name" : "INport[5]",
 					"strict" : false
 				},
 				{
-					"name" : "INport[5]",
+					"name" : "INport[7]",
 					"strict" : false
 				},
 				{

@@ -12,7 +12,7 @@
 # 
 # vlog -sv -work work +incdir+C:/Users/franc/OneDrive/Escritorio/Arquitectura/ProyectoTop {C:/Users/franc/OneDrive/Escritorio/Arquitectura/ProyectoTop/top.sv}
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 18:20:31 on Oct 31,2023
+# Start time: 13:22:43 on Nov 04,2023
 # vlog -reportprogress 300 -sv -work work "+incdir+C:/Users/franc/OneDrive/Escritorio/Arquitectura/ProyectoTop" C:/Users/franc/OneDrive/Escritorio/Arquitectura/ProyectoTop/top.sv 
 # -- Compiling module top
 # -- Compiling module dmem
@@ -35,12 +35,12 @@
 # 
 # Top level modules:
 # 	top
-# End time: 18:20:31 on Oct 31,2023, Elapsed time: 0:00:00
+# End time: 13:22:43 on Nov 04,2023, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # 
 vsim rtl_work.top
 # vsim rtl_work.top 
-# Start time: 18:20:41 on Oct 31,2023
+# Start time: 13:22:48 on Nov 04,2023
 # Loading sv_std.std
 # Loading rtl_work.top
 # Loading rtl_work.arm
@@ -76,110 +76,12 @@ add wave -position end  sim:/top/MemData
 add wave -position end  sim:/top/INData
 force -freeze sim:/top/clk 1 0, 0 {50 ps} -r 100
 run
-# ** Warning: (vsim-PLI-3407) Too many data words read on line 65 of file "C:\Users\franc\OneDrive\Escritorio\Arquitectura\ProyectoTop\imem_io.dat". (Current address [64], address range [0:63])    : C:/Users/franc/OneDrive/Escritorio/Arquitectura/ProyectoTop/top.sv(49)
-#    Time: 0 ps  Iteration: 0  Instance: /top/imem
-# ** Warning: (vsim-PLI-3407) Too many data words read on line 65 of file "C:\Users\franc\OneDrive\Escritorio\Arquitectura\ProyectoTop\dmem_io.dat". (Current address [64], address range [0:63])    : C:/Users/franc/OneDrive/Escritorio/Arquitectura/ProyectoTop/top.sv(35)
-#    Time: 0 ps  Iteration: 0  Instance: /top/dmem
 force -freeze sim:/top/reset 1 0
 run
-run
-force -freeze sim:/top/reset St0 0
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-force -freeze {sim:/top/INport[7]} 1 0
-force -freeze {sim:/top/INport[6]} HiZ 0
-force -freeze {sim:/top/INport[5]} 1 0
-force -freeze {sim:/top/INport[4]} 1 0
-force -freeze {sim:/top/INport[3]} 1 0
-force -freeze {sim:/top/INport[2]} 1 0
-force -freeze {sim:/top/INport[1]} 1 0
-force -freeze {sim:/top/INport[0]} 1 0
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-force -freeze sim:/top/INport 11111111 0
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-force -freeze sim:/top/reset St1 0
-run
-run
-run
-run
-run
-run
-run
+force -freeze sim:/top/reset St 0
+# Invalid binary digit: S.
+# ** Error: (vsim-4011) Invalid force value: St 0.
+# 
 force -freeze sim:/top/reset St0 0
 run
 run
@@ -264,7 +166,6 @@ run
 run
 run
 run
-force -freeze sim:/top/INport 00000000 0
 run
 run
 run
@@ -275,20 +176,15 @@ run
 run
 run
 run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-# End time: 18:24:57 on Oct 31,2023, Elapsed time: 0:04:16
-# Errors: 0, Warnings: 2
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+
+run 10 ns
+
+run 10 ns
+
+# End time: 13:24:53 on Nov 04,2023, Elapsed time: 0:02:05
+# Errors: 1, Warnings: 0

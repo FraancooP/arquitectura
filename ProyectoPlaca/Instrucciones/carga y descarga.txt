@@ -1,0 +1,108 @@
+------------------------------------------------------------------------------------------------------------------------
+---------------------------------------SECUENCIA DE CARGA Y DESCARGA POR ALGORITMO--------------------------------------
+------------------------------------------------------------------------------------------------------------------------
+144 CARGA		ADD R1, R0, #0		Cargo en R1, un 0(Contador de divisiones)
+145			ADD R2, R0, #0x1		Cargo en R2, un 0x1(Comienzo en led 1)
+146			ADD R3, R0, #0x80		Cargo en R3, 0x80(ULTIMO LED)
+147			ADD R4, R0, #0		CARGO EN R4 UN 0
+148			ADD R5, R0, #0		CARGO EN R5 UN 0
+149			ADD R6, R0, #7		Cargo en R6 un 7, Cantidad de veces que voy mostrar leds
+150			ADD R8, R0, #8		Cargo en R8, un 8(Veces que voy a duplicar un registro)
+151			SUB R8, R8, R5		Decremento R8 en R5
+152			ADD R4, R4, R2		Le sumo a R4 lo que esta en R2
+153			STR R4, [R0, #0x800]	Muestro R4
+154			ADD R4, R4, R2		Le sumo a R4 lo que esta en R2
+155			ADD R2, R2, R2		Duplico R2
+156			LDR R9, [R0, #0x8]	Cargo delay de secuencia
+157			SUBS R9, R9, #1		Decremento delay en 1
+158			BNE #628			Salto al decremento
+159			SUBS R8, R8, #1		Decremento R8, en 1
+160			BNE #612			Salto a Mostrar 
+161			ADD R5, R5, #1		Aumento R5 en 1
+162			ADD R2, R0, #0x1		Recargo R2 con 0x1
+163			ADD R4, R0, R3		Recargo R4, con lo que quedo en R3(0x80)
+164			ADD R10, R0, #6		Cargo R10 un 6(Veces q duplico un registro)
+165			ADD R11, R0, #1		Cargo 1 en R11, EL QUE VAMOS A DUPLICAR
+166			SUBS R10, R10, R1		RESTO R10 CON R1
+167			BEQ #684			Salto a Aumentar contador de divisiones
+168			SUBS R10, R10, #1		Veces que duplico R11
+169			ADD R11, R11, R11		Duplico R11
+170			BNE #672			Salto A Subs r10
+171			ADD R1, R1, #1		Aumento r1 en 1
+172			ADD R3, R3, R11		Cargo en r3, lo que esta en r3 mas r11
+173			LDR R8, [R0, #0x800]	Lectura de boton
+174			ANDS R8, R8, #0x80	Comparo si apreto o no
+175			BNE #708			Si No Aprieto salto al subs
+176			BEQ #84			Si aprieto vuelvo a menu 1
+177			SUBS R6, R6, #1		Decremento Cantidad de veces q muestro leds
+178			BNE #600			Salto a mostrar recargar r8
+179			ADD R1, R0, #8		Cargo en r1 un 8(cantidad de veces q vamos a descargar)
+180			ADD R2, R0, #0x1		Cargo un 0x1 en r2
+181			ADD R3, R0, #0xFF		Cargo en R3, un 0xFF(todos los leds prendidos)
+182			STR R3, [R0, #0x800]	Muestro en pantalla todos los leds prendidos
+183			SUB R3, R3, R2		Decremento R3 en R2
+184			ADD R2, R2, R2		Duplico R2
+185			LDR R9,[R0,#0x8]		Lectura de delay de secuencia
+186			SUBS R9, R9, #1		Decremento delay en 1
+187			BNE #744			Espero a terminar de restar delay
+188			LDR R8, [R0, #0x800]	Lectura de boton
+189			ANDS R8, R8, #0x80	Comparo si aprete o no el boton
+190			BNE #768			Si No aprete boton salto al subs
+191			BEQ #84			Si Aprieto Boton salto al menu 1
+192			SUBS R1, R1, #1		Decremento r1 en 1
+193			BNE #728			Salto A Mostrar STR
+194 FIN CARGA	B #576			Reinicia toda la secuencia de nuevo
+------------------------------------------------------------------------------------------------------------------------
+---------------------------------------INSTRUCCIONES EN NEMOTECNICOS----------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------
+ADD R1, R0, #0
+ADD R2, R0, #0x1
+ADD R3, R0, #0x80
+ADD R4, R0, #0
+ADD R5, R0, #0
+ADD R6, R0, #7
+ADD R8, R0, #8
+SUB R8, R8, R5
+ADD R4, R4, R2
+STR R4, [R0, #0x800]
+ADD R4, R4, R2
+ADD R2, R2, R2
+LDR R9, [R0, #0x8]
+SUBS R9, R9, #1
+BNE #628
+SUBS R8, R8, #1
+BNE #612
+ADD R5, R5, #1
+ADD R2, R0, #0x1
+ADD R4, R0, R3
+ADD R10, R0, #6
+ADD R11, R0, #1
+SUBS R10, R10, R1
+BEQ #684
+SUBS R10, R10, #1
+ADD R11, R11, R11
+BNE #672
+ADD R1, R1, #1
+ADD R3, R3, R11
+LDR R8, [R0, #0x800]
+ANDS R8, R8, #0x80
+BNE #708
+BEQ #84
+SUBS R6, R6, #1
+BNE #600
+ADD R1, R0, #8
+ADD R2, R0, #0x1
+ADD R3, R0, #0xFF
+STR R3, [R0, #0x800]
+SUB R3, R3, R2
+ADD R2, R2, R2
+LDR R9,[R0,#0x8]
+SUBS R9, R9, #1
+BNE #744
+LDR R8, [R0, #0x800]
+ANDS R8, R8, #0x80
+BNE #768
+BEQ #84
+SUBS R1, R1, #1
+BNE #728
+B #576

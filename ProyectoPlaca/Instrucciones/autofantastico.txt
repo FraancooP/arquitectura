@@ -1,0 +1,80 @@
+------------------------------------------------------------------------------------------------------------------------
+---------------------------------------SECUENCIA AUTO FANTASTICO POR ALGORITMO------------------------------------------
+------------------------------------------------------------------------------------------------------------------------
+64 AUTO		ADD R9, R0, #0		CARGO EN R9, UN 0(LO USAMOS PARA DELAY)
+65			ADD R1, R0, #0		Cargo en R1, un 0(Contador de divisiones)
+66			ADD R5, R0, #7		Cargo en R5, un 7(Cantida de veces que voy a dividir)
+67			ADD R2, R0, #0x80		Cargo en R2, el 0x80(Comienzo por el ultimo led)
+68			STR R2,[R0, #0x800]	Muestro el ultimo led(0x800+0x80)
+69			ADD R3, R0, #6		Cargo en el registro R3, un 6(Cantidad de veces que duplico un registro)
+70			ADD R4, R0, #1		CARGO EN EL REGISTRO R4, UN 1 (REGISTRO QUE VOY A DUPLICAR)
+71			SUBS R3, R3, R1		RESTO R3, CON R1 
+72			BEQ #304			SI LO DE ARRIBA ES 0 SE ACTIBA EL SALTO, de lo contrario no
+73			SUBS R3, R3, #1		DECREMENTA EN 1, R3(VALE 6)
+74			ADD R4, R4, R4		DUPLICA R4, 6 VECES
+75			BNE #292			SALTAMOS AL SUBS R3, R3, #1
+76			ADD R1, R1, #1		SUMO EN 1 EL CONTADOR DE DIVISION
+77			SUB R2, R2, R4		RESTO LO QUE ESTA EN R2(0x80)con lo q esta en R4(0x40)seria la division
+78			LDR R9, [R0, #0x4]	Lectura de delay de secuencia
+79			SUBS R9, R9, #1		resto delay en 1
+80			BNE #316			Espero a terminar de restar delay
+81			LDR R8, [R0, #0x800]	HAGO LECTURA DE BOTON
+82			ANDS R8, R8, #0x80	COMPARO SI APRETE BOTON O NO
+83			BNE #340			SI NO APRIETO NADA, SIGO AL SUBS
+84			BEQ #84			SI APRIETO BOTON VUELVO AL MENU 1
+85			SUBS R5, R5, #1		ESTE SUBS SE ACTIVA 7 VECES(CANTIDAD DE VECES QUE DECIDIMOS DIVIDIR)
+86			BNE #272			SALTA A MOSTRAR LOS LEDS
+87			STR R2, [R0, #0x800]	MUESTRO LA PRIMERA LUZ
+88			ADD R5, R0, #7		CARGO EN R5, UN 7(Cantida de veces que voy a MULTIPLICAR)
+89			ADD R2, R2, R2		DUPLICO R2(COMENZANDO EN 1)
+90			LDR R9, [R0, #0x4]	Lectura de delay de secuencia
+91			SUBS R9, R9, #1		Decremento delay en 1
+92			BNE #364			Salto al subs del delay
+93			STR R2, [R0,#0x800]	Muestro R2
+94			LDR R8, [R0, #0x800]	Hago leCTURA DE BOTON
+95			ANDS R8, R8, #0x80	Comparo si aprete o no el boton
+96			BNE #392			Si NO aprieto Boton salto al subs
+97			BEQ #84			Si aprieto BOTON vuelvo al menu 1
+98			SUBS R5, R5, #1		Decremento cantidad de veces que quiero multiplicar en 1
+99			BNE #356			Salto a duplicar R2
+100 FIN AUTO	B #256			Reinicia toda la secuencia de nuevo
+------------------------------------------------------------------------------------------------------------------------
+---------------------------------------INSTRUCCIONES EN NEMOTECNICOS----------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------
+ADD R9, R0, #0
+ADD R1, R0, #0
+ADD R5, R0, #7
+ADD R2, R0, #0x80
+STR R2,[R0, #0x800]
+ADD R3, R0, #6
+ADD R4, R0, #1
+SUBS R3, R3, R1
+BEQ #304
+SUBS R3, R3, #1
+ADD R4, R4, R4
+BNE #292
+ADD R1, R1, #1
+SUB R2, R2, R4
+LDR R9, [R0, #0x4]
+SUBS R9, R9, #1
+BNE #316
+LDR R8, [R0, #0x800]
+ANDS R8, R8, #0x80
+BNE #340
+BEQ #84
+SUBS R5, R5, #1
+BNE #272
+STR R2, [R0, #0x800]
+ADD R5, R0, #7
+ADD R2, R2, R2
+LDR R9, [R0, #0x4]
+SUBS R9, R9, #1
+BNE #364
+STR R2, [R0,#0x800]
+LDR R8, [R0, #0x800]
+ANDS R8, R8, #0x80
+BNE #392
+BEQ #84
+SUBS R5, R5, #1
+BNE #356
+B #256

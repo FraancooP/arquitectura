@@ -1,5 +1,5 @@
 Analysis & Synthesis report for top
-Tue Oct 31 18:20:13 2023
+Sat Nov 04 10:22:54 2023
 Quartus Prime Version 19.1.0 Build 670 09/22/2019 SJ Lite Edition
 
 
@@ -65,15 +65,15 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                     ;
 +------------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Tue Oct 31 18:20:13 2023       ;
+; Analysis & Synthesis Status        ; Successful - Sat Nov 04 10:22:54 2023       ;
 ; Quartus Prime Version              ; 19.1.0 Build 670 09/22/2019 SJ Lite Edition ;
 ; Revision Name                      ; top                                         ;
 ; Top-level Entity Name              ; top                                         ;
 ; Family                             ; Cyclone IV E                                ;
-; Total logic elements               ; 4,571                                       ;
-;     Total combinational functions  ; 2,440                                       ;
-;     Dedicated logic registers      ; 2,321                                       ;
-; Total registers                    ; 2321                                        ;
+; Total logic elements               ; 5,092                                       ;
+;     Total combinational functions  ; 2,594                                       ;
+;     Dedicated logic registers      ; 2,577                                       ;
+; Total registers                    ; 2577                                        ;
 ; Total pins                         ; 18                                          ;
 ; Total virtual pins                 ; 0                                           ;
 ; Total memory bits                  ; 0                                           ;
@@ -207,20 +207,20 @@ https://fpgasoftware.intel.com/eula.
 +---------------------------------------------+-----------+
 ; Resource                                    ; Usage     ;
 +---------------------------------------------+-----------+
-; Estimated Total logic elements              ; 4,571     ;
+; Estimated Total logic elements              ; 5,092     ;
 ;                                             ;           ;
-; Total combinational functions               ; 2440      ;
+; Total combinational functions               ; 2594      ;
 ; Logic element usage by number of LUT inputs ;           ;
-;     -- 4 input functions                    ; 1966      ;
-;     -- 3 input functions                    ; 216       ;
-;     -- <=2 input functions                  ; 258       ;
+;     -- 4 input functions                    ; 2239      ;
+;     -- 3 input functions                    ; 198       ;
+;     -- <=2 input functions                  ; 157       ;
 ;                                             ;           ;
 ; Logic elements by mode                      ;           ;
-;     -- normal mode                          ; 2350      ;
+;     -- normal mode                          ; 2504      ;
 ;     -- arithmetic mode                      ; 90        ;
 ;                                             ;           ;
-; Total registers                             ; 2321      ;
-;     -- Dedicated logic registers            ; 2321      ;
+; Total registers                             ; 2577      ;
+;     -- Dedicated logic registers            ; 2577      ;
 ;     -- I/O registers                        ; 0         ;
 ;                                             ;           ;
 ; I/O pins                                    ; 18        ;
@@ -228,9 +228,9 @@ https://fpgasoftware.intel.com/eula.
 ; Embedded Multiplier 9-bit elements          ; 0         ;
 ;                                             ;           ;
 ; Maximum fan-out node                        ; clk~input ;
-; Maximum fan-out                             ; 2321      ;
-; Total fan-out                               ; 15952     ;
-; Average fan-out                             ; 3.33      ;
+; Maximum fan-out                             ; 2577      ;
+; Total fan-out                               ; 17667     ;
+; Average fan-out                             ; 3.39      ;
 +---------------------------------------------+-----------+
 
 
@@ -239,298 +239,42 @@ https://fpgasoftware.intel.com/eula.
 +--------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+---------------------------------------------------------+-------------+--------------+
 ; Compilation Hierarchy Node     ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                     ; Entity Name ; Library Name ;
 +--------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+---------------------------------------------------------+-------------+--------------+
-; |top                           ; 2440 (3)            ; 2321 (0)                  ; 0           ; 0            ; 0       ; 0         ; 18   ; 0            ; |top                                                    ; top         ; work         ;
-;    |arm:arm|                   ; 806 (0)             ; 257 (0)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|arm:arm                                            ; arm         ; work         ;
-;       |controller:c|           ; 11 (0)              ; 1 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|arm:arm|controller:c                               ; controller  ; work         ;
-;          |condlogic:cl|        ; 5 (2)               ; 1 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|arm:arm|controller:c|condlogic:cl                  ; condlogic   ; work         ;
-;             |condcheck:cc|     ; 1 (1)               ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|arm:arm|controller:c|condlogic:cl|condcheck:cc     ; condcheck   ; work         ;
+; |top                           ; 2594 (4)            ; 2577 (0)                  ; 0           ; 0            ; 0       ; 0         ; 18   ; 0            ; |top                                                    ; top         ; work         ;
+;    |arm:arm|                   ; 1173 (0)            ; 513 (0)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|arm:arm                                            ; arm         ; work         ;
+;       |controller:c|           ; 17 (0)              ; 1 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|arm:arm|controller:c                               ; controller  ; work         ;
+;          |condlogic:cl|        ; 8 (3)               ; 1 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|arm:arm|controller:c|condlogic:cl                  ; condlogic   ; work         ;
+;             |condcheck:cc|     ; 3 (3)               ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|arm:arm|controller:c|condlogic:cl|condcheck:cc     ; condcheck   ; work         ;
 ;             |flopenr:flagreg1| ; 2 (2)               ; 1 (1)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|arm:arm|controller:c|condlogic:cl|flopenr:flagreg1 ; flopenr     ; work         ;
-;          |decode:dec|          ; 6 (6)               ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|arm:arm|controller:c|decode:dec                    ; decode      ; work         ;
-;       |datapath:dp|            ; 795 (0)             ; 256 (0)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|arm:arm|datapath:dp                                ; datapath    ; work         ;
+;          |decode:dec|          ; 9 (9)               ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|arm:arm|controller:c|decode:dec                    ; decode      ; work         ;
+;       |datapath:dp|            ; 1156 (0)            ; 512 (0)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|arm:arm|datapath:dp                                ; datapath    ; work         ;
 ;          |adder:pcadd1|        ; 30 (30)             ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|arm:arm|datapath:dp|adder:pcadd1                   ; adder       ; work         ;
 ;          |adder:pcadd2|        ; 30 (30)             ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|arm:arm|datapath:dp|adder:pcadd2                   ; adder       ; work         ;
-;          |alu:alu|             ; 131 (131)           ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|arm:arm|datapath:dp|alu:alu                        ; alu         ; work         ;
-;          |flopr:pcreg|         ; 66 (66)             ; 32 (32)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|arm:arm|datapath:dp|flopr:pcreg                    ; flopr       ; work         ;
-;          |mux2:ra1mux|         ; 2 (2)               ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|arm:arm|datapath:dp|mux2:ra1mux                    ; mux2        ; work         ;
-;          |mux2:ra2mux|         ; 7 (7)               ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|arm:arm|datapath:dp|mux2:ra2mux                    ; mux2        ; work         ;
-;          |mux2:resmux|         ; 56 (56)             ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|arm:arm|datapath:dp|mux2:resmux                    ; mux2        ; work         ;
-;          |mux2:srcbmux|        ; 45 (45)             ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|arm:arm|datapath:dp|mux2:srcbmux                   ; mux2        ; work         ;
-;          |regfile:rf|          ; 428 (428)           ; 224 (224)                 ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|arm:arm|datapath:dp|regfile:rf                     ; regfile     ; work         ;
-;    |cmp2:compare|              ; 18 (18)             ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|cmp2:compare                                       ; cmp2        ; work         ;
-;    |dmem:dmem|                 ; 1496 (1496)         ; 2048 (2048)               ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|dmem:dmem                                          ; dmem        ; work         ;
-;    |imem:imem|                 ; 117 (117)           ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|imem:imem                                          ; imem        ; work         ;
+;          |alu:alu|             ; 132 (132)           ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|arm:arm|datapath:dp|alu:alu                        ; alu         ; work         ;
+;          |flopr:pcreg|         ; 153 (153)           ; 32 (32)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|arm:arm|datapath:dp|flopr:pcreg                    ; flopr       ; work         ;
+;          |mux2:ra1mux|         ; 4 (4)               ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|arm:arm|datapath:dp|mux2:ra1mux                    ; mux2        ; work         ;
+;          |mux2:ra2mux|         ; 9 (9)               ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|arm:arm|datapath:dp|mux2:ra2mux                    ; mux2        ; work         ;
+;          |mux2:resmux|         ; 9 (9)               ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|arm:arm|datapath:dp|mux2:resmux                    ; mux2        ; work         ;
+;          |mux2:srcbmux|        ; 49 (49)             ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|arm:arm|datapath:dp|mux2:srcbmux                   ; mux2        ; work         ;
+;          |regfile:rf|          ; 740 (740)           ; 480 (480)                 ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|arm:arm|datapath:dp|regfile:rf                     ; regfile     ; work         ;
+;    |cmp2:compare|              ; 17 (17)             ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|cmp2:compare                                       ; cmp2        ; work         ;
+;    |dmem:dmem|                 ; 1345 (1345)         ; 2048 (2048)               ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|dmem:dmem                                          ; dmem        ; work         ;
+;    |imem:imem|                 ; 55 (55)             ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|imem:imem                                          ; imem        ; work         ;
 ;    |port:inport|               ; 0 (0)               ; 8 (8)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|port:inport                                        ; port        ; work         ;
 ;    |port:outport|              ; 0 (0)               ; 8 (8)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|port:outport                                       ; port        ; work         ;
 +--------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+---------------------------------------------------------+-------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
 
-+-------------------------------------------------------------------------------------------------------+
-; Registers Removed During Synthesis                                                                    ;
-+---------------------------------------------------------+---------------------------------------------+
-; Register name                                           ; Reason for Removal                          ;
-+---------------------------------------------------------+---------------------------------------------+
-; arm:arm|controller:c|condlogic:cl|flopenr:flagreg0|q[1] ; Lost fanout                                 ;
-; arm:arm|controller:c|condlogic:cl|flopenr:flagreg1|q[1] ; Lost fanout                                 ;
-; arm:arm|controller:c|condlogic:cl|flopenr:flagreg0|q[0] ; Lost fanout                                 ;
-; arm:arm|datapath:dp|regfile:rf|rf~320                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~288                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~256                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~352                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~160                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~192                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~128                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~224                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~289                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~161                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~193                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~321                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~129                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~257                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~225                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~353                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~322                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~290                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~258                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~354                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~162                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~194                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~130                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~226                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~291                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~163                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~195                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~323                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~131                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~259                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~227                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~355                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~324                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~292                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~260                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~356                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~164                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~196                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~132                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~228                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~293                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~165                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~197                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~325                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~133                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~261                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~229                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~357                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~326                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~294                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~262                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~358                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~166                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~198                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~134                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~230                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~295                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~167                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~199                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~327                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~135                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~263                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~231                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~359                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~328                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~296                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~264                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~360                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~168                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~200                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~136                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~232                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~297                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~169                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~201                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~329                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~137                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~265                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~233                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~361                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~330                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~298                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~266                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~362                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~170                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~202                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~138                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~234                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~299                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~171                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~203                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~331                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~139                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~267                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~235                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~363                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~332                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~300                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~268                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~364                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~172                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~204                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~140                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~236                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~301                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~173                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~205                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~333                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~141                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~269                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~237                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~365                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~334                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~302                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~270                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~366                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~174                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~206                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~142                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~238                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~303                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~175                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~207                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~335                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~143                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~271                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~239                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~367                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~336                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~304                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~272                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~368                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~176                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~208                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~144                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~240                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~305                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~177                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~209                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~337                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~145                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~273                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~241                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~369                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~338                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~306                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~274                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~370                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~178                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~210                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~146                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~242                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~307                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~179                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~211                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~339                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~147                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~275                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~243                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~371                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~340                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~308                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~276                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~372                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~180                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~212                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~148                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~244                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~309                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~181                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~213                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~341                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~149                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~277                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~245                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~373                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~342                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~310                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~278                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~374                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~182                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~214                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~150                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~246                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~311                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~183                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~215                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~343                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~151                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~279                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~247                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~375                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~344                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~312                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~280                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~376                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~184                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~216                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~152                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~248                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~313                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~185                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~217                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~345                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~153                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~281                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~249                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~377                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~346                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~314                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~282                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~378                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~186                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~218                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~154                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~250                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~315                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~187                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~219                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~347                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~155                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~283                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~251                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~379                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~348                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~316                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~284                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~380                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~188                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~220                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~156                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~252                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~317                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~189                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~221                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~349                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~157                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~285                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~253                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~381                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~350                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~318                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~286                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~382                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~190                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~222                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~158                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~254                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~319                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~191                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~223                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~351                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~159                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~287                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~255                   ; Stuck at GND due to stuck port clock_enable ;
-; arm:arm|datapath:dp|regfile:rf|rf~383                   ; Stuck at GND due to stuck port clock_enable ;
-; Total Number of Removed Registers = 259                 ;                                             ;
-+---------------------------------------------------------+---------------------------------------------+
++------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                           ;
++---------------------------------------------------------+--------------------+
+; Register name                                           ; Reason for Removal ;
++---------------------------------------------------------+--------------------+
+; arm:arm|controller:c|condlogic:cl|flopenr:flagreg0|q[1] ; Lost fanout        ;
+; arm:arm|controller:c|condlogic:cl|flopenr:flagreg1|q[1] ; Lost fanout        ;
+; arm:arm|controller:c|condlogic:cl|flopenr:flagreg0|q[0] ; Lost fanout        ;
+; Total Number of Removed Registers = 3                   ;                    ;
++---------------------------------------------------------+--------------------+
 
 
 +------------------------------------------------------+
@@ -538,12 +282,12 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 2321  ;
+; Total registers                              ; 2577  ;
 ; Number of registers using Synchronous Clear  ; 0     ;
 ; Number of registers using Synchronous Load   ; 30    ;
 ; Number of registers using Asynchronous Clear ; 33    ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 2290  ;
+; Number of registers using Clock Enable       ; 2546  ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
@@ -553,14 +297,13 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------+
 ; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                  ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------+
-; 4:1                ; 32 bits   ; 64 LEs        ; 64 LEs               ; 0 LEs                  ; No         ; |top|arm:arm|datapath:dp|alu:alu|Mux13      ;
-; 3:1                ; 24 bits   ; 48 LEs        ; 48 LEs               ; 0 LEs                  ; No         ; |top|arm:arm|datapath:dp|mux2:resmux|y[20]  ;
-; 3:1                ; 8 bits    ; 16 LEs        ; 16 LEs               ; 0 LEs                  ; No         ; |top|arm:arm|datapath:dp|mux2:resmux|y[4]   ;
-; 3:1                ; 5 bits    ; 10 LEs        ; 10 LEs               ; 0 LEs                  ; No         ; |top|arm:arm|datapath:dp|mux2:srcbmux|y[15] ;
+; 4:1                ; 32 bits   ; 64 LEs        ; 64 LEs               ; 0 LEs                  ; No         ; |top|arm:arm|datapath:dp|alu:alu|Mux4       ;
+; 3:1                ; 24 bits   ; 48 LEs        ; 48 LEs               ; 0 LEs                  ; No         ; |top|arm:arm|datapath:dp|mux2:resmux|y[29]  ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 16 LEs               ; 0 LEs                  ; No         ; |top|arm:arm|datapath:dp|mux2:resmux|y[7]   ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 22 LEs               ; 0 LEs                  ; No         ; |top|arm:arm|datapath:dp|mux2:srcbmux|y[19] ;
 ; 3:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |top|arm:arm|datapath:dp|mux2:srcbmux|y[0]  ;
 ; 3:1                ; 6 bits    ; 12 LEs        ; 12 LEs               ; 0 LEs                  ; No         ; |top|arm:arm|datapath:dp|mux2:srcbmux|y[2]  ;
-; 3:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |top|arm:arm|datapath:dp|mux2:srcbmux|y[10] ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |top|arm:arm|datapath:dp|mux2:srcbmux|y[8]  ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; No         ; |top|arm:arm|datapath:dp|mux2:srcbmux|y[8]  ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------+
 
 
@@ -761,23 +504,23 @@ Note: In order to hide this table in the UI and the text report file, please set
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
 ; boundary_port         ; 18                          ;
-; cycloneiii_ff         ; 2321                        ;
+; cycloneiii_ff         ; 2577                        ;
 ;     CLR               ; 1                           ;
 ;     CLR SLD           ; 30                          ;
-;     ENA               ; 2288                        ;
+;     ENA               ; 2544                        ;
 ;     ENA CLR           ; 2                           ;
-; cycloneiii_lcell_comb ; 2440                        ;
+; cycloneiii_lcell_comb ; 2594                        ;
 ;     arith             ; 90                          ;
 ;         2 data inputs ; 58                          ;
 ;         3 data inputs ; 32                          ;
-;     normal            ; 2350                        ;
-;         1 data inputs ; 127                         ;
-;         2 data inputs ; 73                          ;
-;         3 data inputs ; 184                         ;
-;         4 data inputs ; 1966                        ;
+;     normal            ; 2504                        ;
+;         1 data inputs ; 16                          ;
+;         2 data inputs ; 83                          ;
+;         3 data inputs ; 166                         ;
+;         4 data inputs ; 2239                        ;
 ;                       ;                             ;
-; Max LUT depth         ; 21.60                       ;
-; Average LUT depth     ; 12.90                       ;
+; Max LUT depth         ; 20.50                       ;
+; Average LUT depth     ; 12.83                       ;
 +-----------------------+-----------------------------+
 
 
@@ -796,7 +539,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 19.1.0 Build 670 09/22/2019 SJ Lite Edition
-    Info: Processing started: Tue Oct 31 18:19:48 2023
+    Info: Processing started: Sat Nov 04 10:22:24 2023
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off top -c top
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 8 of the 8 processors detected
@@ -835,30 +578,32 @@ Info (12128): Elaborating entity "regfile" for hierarchy "arm:arm|datapath:dp|re
 Info (12128): Elaborating entity "extend" for hierarchy "arm:arm|datapath:dp|extend:ext" File: C:/Users/franc/OneDrive/Escritorio/Arquitectura/ProyectoTop/top.sv Line: 242
 Info (12128): Elaborating entity "alu" for hierarchy "arm:arm|datapath:dp|alu:alu" File: C:/Users/franc/OneDrive/Escritorio/Arquitectura/ProyectoTop/top.sv Line: 247
 Info (12128): Elaborating entity "imem" for hierarchy "imem:imem" File: C:/Users/franc/OneDrive/Escritorio/Arquitectura/ProyectoTop/top.sv Line: 19
-Warning (10850): Verilog HDL warning at top.sv(49): number of words (199) in memory file does not match the number of elements in the address range [0:63] File: C:/Users/franc/OneDrive/Escritorio/Arquitectura/ProyectoTop/top.sv Line: 49
+Warning (10850): Verilog HDL warning at top.sv(49): number of words (30) in memory file does not match the number of elements in the address range [0:63] File: C:/Users/franc/OneDrive/Escritorio/Arquitectura/ProyectoTop/top.sv Line: 49
 Warning (10030): Net "RAM.data_a" at top.sv(46) has no driver or initial value, using a default initial value '0' File: C:/Users/franc/OneDrive/Escritorio/Arquitectura/ProyectoTop/top.sv Line: 46
 Warning (10030): Net "RAM.waddr_a" at top.sv(46) has no driver or initial value, using a default initial value '0' File: C:/Users/franc/OneDrive/Escritorio/Arquitectura/ProyectoTop/top.sv Line: 46
 Warning (10030): Net "RAM.we_a" at top.sv(46) has no driver or initial value, using a default initial value '0' File: C:/Users/franc/OneDrive/Escritorio/Arquitectura/ProyectoTop/top.sv Line: 46
 Info (12128): Elaborating entity "dmem" for hierarchy "dmem:dmem" File: C:/Users/franc/OneDrive/Escritorio/Arquitectura/ProyectoTop/top.sv Line: 20
-Warning (10850): Verilog HDL warning at top.sv(35): number of words (66) in memory file does not match the number of elements in the address range [0:63] File: C:/Users/franc/OneDrive/Escritorio/Arquitectura/ProyectoTop/top.sv Line: 35
+Warning (10850): Verilog HDL warning at top.sv(35): number of words (14) in memory file does not match the number of elements in the address range [0:63] File: C:/Users/franc/OneDrive/Escritorio/Arquitectura/ProyectoTop/top.sv Line: 35
 Info (12128): Elaborating entity "cmp2" for hierarchy "cmp2:compare" File: C:/Users/franc/OneDrive/Escritorio/Arquitectura/ProyectoTop/top.sv Line: 22
 Info (12128): Elaborating entity "port" for hierarchy "port:inport" File: C:/Users/franc/OneDrive/Escritorio/Arquitectura/ProyectoTop/top.sv Line: 24
 Info (276014): Found 2 instances of uninferred RAM logic
     Info (276007): RAM logic "arm:arm|datapath:dp|regfile:rf|rf" is uninferred due to asynchronous read logic File: C:/Users/franc/OneDrive/Escritorio/Arquitectura/ProyectoTop/top.sv Line: 256
     Info (276007): RAM logic "dmem:dmem|RAM" is uninferred due to asynchronous read logic File: C:/Users/franc/OneDrive/Escritorio/Arquitectura/ProyectoTop/top.sv Line: 32
+Warning (127007): Memory Initialization File or Hexadecimal (Intel-Format) File "C:/Users/franc/OneDrive/Escritorio/Arquitectura/ProyectoTop/db/top.ram0_imem_37c714.hdl.mif" contains "don't care" values -- overwriting them with 0s
+Warning (127007): Memory Initialization File or Hexadecimal (Intel-Format) File "C:/Users/franc/OneDrive/Escritorio/Arquitectura/ProyectoTop/db/top.ram0_dmem_351e6b.hdl.mif" contains "don't care" values -- overwriting them with 0s
 Info (286030): Timing-Driven Synthesis is running
 Info (17049): 3 registers lost all their fanouts during netlist optimizations.
 Info (144001): Generated suppressed messages file C:/Users/franc/OneDrive/Escritorio/Arquitectura/ProyectoTop/output_files/top.map.smsg
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Info (21057): Implemented 4653 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 5174 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 10 input pins
     Info (21059): Implemented 8 output pins
-    Info (21061): Implemented 4635 logic cells
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 6 warnings
-    Info: Peak virtual memory: 4825 megabytes
-    Info: Processing ended: Tue Oct 31 18:20:13 2023
-    Info: Elapsed time: 00:00:25
+    Info (21061): Implemented 5156 logic cells
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 8 warnings
+    Info: Peak virtual memory: 4826 megabytes
+    Info: Processing ended: Sat Nov 04 10:22:54 2023
+    Info: Elapsed time: 00:00:30
     Info: Total CPU time (on all processors): 00:00:25
 
 
